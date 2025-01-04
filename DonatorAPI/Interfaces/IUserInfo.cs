@@ -6,8 +6,6 @@ namespace DonatorAPI.Interfaces
     {
         ICollection<UserInfo> GetUserInfos();
         UserInfo? GetUserInfoByAuth(string auth);
-        UserInfo? GetUserInfoById(int id);
-        ICollection<PurchaseHistory> GetPurchaseHistories(string auth);
         bool IsUserInfoExist(string auth);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DonatorAPI.Data;
 using DonatorAPI.Interfaces;
 using DonatorAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DonatorAPI.Repository
 {
@@ -12,24 +13,15 @@ namespace DonatorAPI.Repository
             _context = context;
         }
 
-        public ICollection<PurchaseHistory> GetPurchaseHistories(string auth)
-        {
-            return _context.PurchaseHistories.Where(p => p.Auth == auth).ToList();
-        }
-
         public UserInfo? GetUserInfoByAuth(string auth)
         {
-            return _context.Users.Where(p => p.Auth == auth).FirstOrDefault();
-        }
-
-        public UserInfo? GetUserInfoById(int id)
-        {
-            return _context.Users.Where(p => p.Id == id).FirstOrDefault();
+            //return _context.Users.Where(p => p.Auth == auth).FirstOrDefault();
+            return _context.Users.Include(auth => auth.PurchaseHistories).Where(p => p.Auth == auth).FirstOrDefault();
         }
 
         public ICollection<UserInfo> GetUserInfos()
         {
-            return _context.Users.OrderBy(p => p.Id).ToList();
+            return _context.Users.Include(auth => auth.PurchaseHistories).OrderBy(p => p.Id).ToList();
         }
 
         public bool IsUserInfoExist(string auth)

@@ -11,13 +11,13 @@ namespace DonatorAPI.Models
         public int Id { get; set; }
 
         [Column("user_auth")]
-        public string Auth { get; set; }
+        public string Auth { get; set; } = string.Empty;
 
         [Column("donate_tier")]
         public string DonateTier { get; set; } = string.Empty;
 
         [Column("expire_time")]
         public DateTime? ExpireTime { get; set; }
-        public ICollection<PurchaseHistory> PurchaseHistories { get; set; }
+        public ICollection<PurchaseHistory> PurchaseHistories { get; set; } = [];
     }
 }
