@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public ulong Auth { get; set; }
+        public float Price { get; set; }
         public DateTime PurchaseDate { get; set; }
     }
 }
