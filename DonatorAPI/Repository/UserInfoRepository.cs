@@ -13,6 +13,12 @@ namespace DonatorAPI.Repository
             _context = context;
         }
 
+        public bool CreateUserInfo(UserInfo userInfo)
+        {
+            _context.Add(userInfo);
+            return Save();
+        }
+
         public UserInfo? GetUserInfoByAuth(string auth)
         {
             //return _context.Users.Where(p => p.Auth == auth).FirstOrDefault();
@@ -27,6 +33,12 @@ namespace DonatorAPI.Repository
         public bool IsUserInfoExist(string auth)
         {
             return _context.Users.Any(p => p.Auth == auth);
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }

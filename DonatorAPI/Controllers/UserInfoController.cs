@@ -45,5 +45,23 @@ namespace DonatorAPI.Controllers
 
             return Ok(userInfo);
         }
+
+        [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateUserInfo([FromBody] UserInfo info)
+        {
+            if (info == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (_userInfo.IsUserInfoExist(info.Auth))
+                return BadRequest("User already exists");
+
+            _userInfo.CreateUserInfo(info);
+            return CreatedAtAction(nameof(GetUserInfoByAuth), new { steamAuth = info.Auth }, info);
+        }
     }
 }
