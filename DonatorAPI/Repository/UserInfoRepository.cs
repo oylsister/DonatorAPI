@@ -12,24 +12,29 @@ namespace DonatorAPI.Repository
             _context = context;
         }
 
-        public ICollection<PurchaseHistory> GetPurchaseHistories(ulong auth)
+        public ICollection<PurchaseHistory> GetPurchaseHistories(string auth)
         {
-            return [.. _context.PurchaseHistories.Where(p => p.Auth == auth)];
+            return _context.PurchaseHistories.Where(p => p.Auth == auth).ToList();
         }
 
-        public UserInfo? GetUserInfo(ulong auth)
+        public UserInfo? GetUserInfoByAuth(string auth)
         {
             return _context.Users.Where(p => p.Auth == auth).FirstOrDefault();
         }
 
-        public UserInfo? GetUserInfo(int id)
+        public UserInfo? GetUserInfoById(int id)
         {
             return _context.Users.Where(p => p.Id == id).FirstOrDefault();
         }
 
         public ICollection<UserInfo> GetUserInfos()
         {
-            return [.. _context.Users.OrderBy(p => p.Id)];
+            return _context.Users.OrderBy(p => p.Id).ToList();
+        }
+
+        public bool IsUserInfoExist(string auth)
+        {
+            return _context.Users.Any(p => p.Auth == auth);
         }
     }
 }

@@ -29,5 +29,21 @@ namespace DonatorAPI.Controllers
 
             return Ok(userInfos);
         }
+
+        [HttpGet("{steamAuth}")]
+        [ProducesResponseType(200, Type = typeof(UserInfo))]
+        [ProducesResponseType(400)]
+        public IActionResult GetUserInfoByAuth(string steamAuth)
+        {
+            if(!_userInfo.IsUserInfoExist(steamAuth))
+                return NotFound();
+
+            var userInfo = _userInfo.GetUserInfoByAuth(steamAuth);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(userInfo);
+        }
     }
 }

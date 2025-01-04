@@ -5,8 +5,9 @@ namespace DonatorAPI.Interfaces
     public interface IUserInfo
     {
         ICollection<UserInfo> GetUserInfos();
-        UserInfo? GetUserInfo(ulong auth);
-        UserInfo? GetUserInfo(int id);
-        ICollection<PurchaseHistory> GetPurchaseHistories(ulong auth);
+        UserInfo? GetUserInfoByAuth(string auth);
+        UserInfo? GetUserInfoById(int id);
+        ICollection<PurchaseHistory> GetPurchaseHistories(string auth);
+        bool IsUserInfoExist(string auth);
     }
 }
