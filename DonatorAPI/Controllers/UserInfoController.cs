@@ -1,4 +1,5 @@
 using DonatorAPI.Data;
+using DonatorAPI.Dto;
 using DonatorAPI.Interfaces;
 using DonatorAPI.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -69,7 +70,7 @@ namespace DonatorAPI.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(204)] 
         [ProducesResponseType(404)]
-        public async Task<IActionResult> UpdateUserInfoAsync(string steamAuth, [FromBody] UserInfo info)
+        public async Task<IActionResult> UpdateUserInfoAsync(string steamAuth, [FromBody] UserInfoDto info)
         {
             if(info == null)
                 return BadRequest(ModelState);
@@ -83,7 +84,7 @@ namespace DonatorAPI.Controllers
             if (!await _userInfo.UpdateUserInfo(info))
             {
                 ModelState.AddModelError("", "Something went wrong updating User");
-                return StatusCode(500, info.Id);
+                return StatusCode(500, info.Auth);
             }
 
             return NoContent();

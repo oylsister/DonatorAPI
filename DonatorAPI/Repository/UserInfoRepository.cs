@@ -1,4 +1,5 @@
 ﻿using DonatorAPI.Data;
+using DonatorAPI.Dto;
 using DonatorAPI.Interfaces;
 using DonatorAPI.Models;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +20,7 @@ namespace DonatorAPI.Repository
             return await Save();
         }
 
-        public async Task<bool> UpdateUserInfo(UserInfo userInfo, CancellationToken cancellationToken = default)
+        public async Task<bool> UpdateUserInfo(UserInfoDto userInfo, CancellationToken cancellationToken = default)
         {
             var user = await GetUserInfoByAuth(userInfo.Auth);
 
@@ -28,11 +29,14 @@ namespace DonatorAPI.Repository
                 return false;
 
             // null meaning no limit so we change userinfo to null just like that.  
-            if (user.DonateTier == "permanent" || user.ExpireTime == null)
+            if (user.DonateTier == "permanent")
                 userInfo.ExpireTime = null;
 
-            _context.Update(userInfo);
-            return await Save();
+            user.ExpireTime = userInfo.ExpireTime;
+            user.DonateTier = userInfo.DonateTier;
+
+            _context.Update(user);
+            return await Save(cancellationToken);
         }
 
         public async Task<UserInfo?> GetUserInfoByAuth(string auth, CancellationToken cancellationToken = default)
@@ -54,7 +58,7 @@ namespace DonatorAPI.Repository
 
         public async Task<bool> Save(CancellationToken cancellationToken = default)
         {
-            var saved = await _context.SaveChangesAsync();
+            var saved = await _context.SaveChangesAsync(cancellationToken);
             return saved > 0 ? true : false;
         }
     }

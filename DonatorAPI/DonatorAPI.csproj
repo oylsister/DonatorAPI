@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Dto\**" />
     <Compile Remove="Helper\**" />
-    <Content Remove="Dto\**" />
     <Content Remove="Helper\**" />
-    <EmbeddedResource Remove="Dto\**" />
     <EmbeddedResource Remove="Helper\**" />
-    <None Remove="Dto\**" />
     <None Remove="Helper\**" />
   </ItemGroup>
 
