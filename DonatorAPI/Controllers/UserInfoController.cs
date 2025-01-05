@@ -30,7 +30,8 @@ namespace DonatorAPI.Controllers
             return Ok(userInfos);
         }
 
-        [HttpGet("{steamAuth}")]
+        // .NET is a fucking pussy when having a name with "Async" behind can cause route issues, so we renamed it by remove Async on their ass.
+        [HttpGet("{steamAuth}", Name = "GetUserInfoByAuth")]
         [ProducesResponseType(200, Type = typeof(UserInfo))]
         [ProducesResponseType(400)]
         public async Task<IActionResult> GetUserInfoByAuthAsync(string steamAuth)
@@ -38,7 +39,7 @@ namespace DonatorAPI.Controllers
             if(!await _userInfo.IsUserInfoExist(steamAuth))
                 return NotFound();
 
-            var userInfo = _userInfo.GetUserInfoByAuth(steamAuth);
+            var userInfo = await _userInfo.GetUserInfoByAuth(steamAuth);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -61,7 +62,31 @@ namespace DonatorAPI.Controllers
                 return BadRequest("User already exists");
 
             await _userInfo.CreateUserInfo(info);
-            return CreatedAtAction(nameof(GetUserInfoByAuthAsync), new { steamAuth = info.Auth }, info);
+            return CreatedAtAction("GetUserInfoByAuth", new { steamAuth = info.Auth }, info);
+        }
+
+        [HttpPut("{steamAuth}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)] 
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> UpdateUserInfoAsync(string steamAuth, [FromBody] UserInfo info)
+        {
+            if(info == null)
+                return BadRequest(ModelState);
+
+            if (!await _userInfo.IsUserInfoExist(steamAuth))
+                return NotFound("User is not exists");
+
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (!await _userInfo.UpdateUserInfo(info))
+            {
+                ModelState.AddModelError("", "Something went wrong updating User");
+                return StatusCode(500, info.Id);
+            }
+
+            return NoContent();
         }
     }
 }

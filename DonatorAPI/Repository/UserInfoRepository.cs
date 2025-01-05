@@ -19,6 +19,22 @@ namespace DonatorAPI.Repository
             return await Save();
         }
 
+        public async Task<bool> UpdateUserInfo(UserInfo userInfo, CancellationToken cancellationToken = default)
+        {
+            var user = await GetUserInfoByAuth(userInfo.Auth);
+
+            // if not found then don't do it.
+            if (user == null)
+                return false;
+
+            // null meaning no limit so we change userinfo to null just like that.  
+            if (user.DonateTier == "permanent" || user.ExpireTime == null)
+                userInfo.ExpireTime = null;
+
+            _context.Update(userInfo);
+            return await Save();
+        }
+
         public async Task<UserInfo?> GetUserInfoByAuth(string auth, CancellationToken cancellationToken = default)
         {
             //return _context.Users.Where(p => p.Auth == auth).FirstOrDefault();
@@ -32,7 +48,8 @@ namespace DonatorAPI.Repository
 
         public async Task<bool> IsUserInfoExist(string auth, CancellationToken cancellationToken = default)
         {
-            return await _context.Users.AnyAsync(p => p.Auth == auth);
+            var user = await _context.Users.Where(p => p.Auth == auth).FirstOrDefaultAsync();
+            return user != null;
         }
 
         public async Task<bool> Save(CancellationToken cancellationToken = default)
