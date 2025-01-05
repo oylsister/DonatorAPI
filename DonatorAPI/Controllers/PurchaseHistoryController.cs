@@ -43,5 +43,20 @@ namespace DonatorAPI.Controllers
 
             return Ok(purchaseHistory);
         }
+
+        [HttpPost("addPurchase")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> AddPurchaseHistory([FromBody] PurchaseHistory info)
+        {
+            if (info == null)
+                return BadRequest(ModelState);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            await _purchaseHistory.AddPurchaseHistory(info);
+            return CreatedAtAction(nameof(GetPurchaseHistoryByAuth), new { steamAuth = info.Auth }, info);
+        }
     }
 }

@@ -12,6 +12,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
 
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddScoped<IUserInfo, UserInfoRepository>();
 builder.Services.AddScoped<IPurchaseHistory, PurchaseHistoryRepository>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

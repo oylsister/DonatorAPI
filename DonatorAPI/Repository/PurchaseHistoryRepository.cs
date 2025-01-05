@@ -23,5 +23,17 @@ namespace DonatorAPI.Repository
         {
             return await _context.PurchaseHistories.Where(p => p.Auth == auth).ToListAsync(cancellationToken);
         }
+
+        public async Task<bool> AddPurchaseHistory(PurchaseHistory purchaseHistory, CancellationToken cancellationToken = default)
+        {
+            await _context.AddAsync(purchaseHistory, cancellationToken);
+            return await Save(cancellationToken);
+        }
+
+        public async Task<bool> Save(CancellationToken cancellationToken = default)
+        {
+            var saved = await _context.SaveChangesAsync();
+            return saved > 0 ? true : false;
+        }
     }
 }

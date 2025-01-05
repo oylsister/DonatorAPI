@@ -46,7 +46,7 @@ namespace DonatorAPI.Controllers
             return Ok(userInfo);
         }
 
-        [HttpPost]
+        [HttpPost("addUser")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateUserInfoAsync([FromBody] UserInfo info)
