@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace DonatorAPI.Models
 {
@@ -18,6 +19,7 @@ namespace DonatorAPI.Models
 
         [Column("expire_time")]
         public DateTime? ExpireTime { get; set; }
-        public ICollection<PurchaseHistory> PurchaseHistories { get; set; } = [];
+
+        public ICollection<PurchaseHistory>? PurchaseHistories { get; set; } = [];
     }
 }
