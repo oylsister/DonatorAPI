@@ -20,9 +20,9 @@ namespace DonatorAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<PurchaseHistory>))]
-        public IActionResult GetPurchaseHistories()
+        public async Task<IActionResult> GetPurchaseHistories()
         {
-            var purchaseHistories = _purchaseHistory.GetPurchaseHistories();
+            var purchaseHistories = await _purchaseHistory.GetPurchaseHistories();
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -32,9 +32,9 @@ namespace DonatorAPI.Controllers
         [HttpGet("{steamAuth}")]
         [ProducesResponseType(200, Type = typeof(PurchaseHistory))]
         [ProducesResponseType(400)]
-        public IActionResult GetPurchaseHistoryByAuth(string steamAuth)
+        public async Task<IActionResult> GetPurchaseHistoryByAuth(string steamAuth)
         {
-            var purchaseHistory = _purchaseHistory.GetUserPurchaseHistory(steamAuth);
+            var purchaseHistory = await _purchaseHistory.GetUserPurchaseHistory(steamAuth);
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 

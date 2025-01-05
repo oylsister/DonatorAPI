@@ -1,6 +1,8 @@
-﻿using DonatorAPI.Data;
+﻿using System.Threading;
+using DonatorAPI.Data;
 using DonatorAPI.Interfaces;
 using DonatorAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DonatorAPI.Repository
 {
@@ -12,14 +14,14 @@ namespace DonatorAPI.Repository
             _context = context;
         }
 
-        public ICollection<PurchaseHistory> GetPurchaseHistories()
+        public async Task<ICollection<PurchaseHistory>> GetPurchaseHistories(CancellationToken cancellationToken = default)
         {
-            return _context.PurchaseHistories.OrderBy(p => p.Id).ToList();
+            return await _context.PurchaseHistories.OrderBy(p => p.Id).ToListAsync(cancellationToken);
         }
 
-        public ICollection<PurchaseHistory> GetUserPurchaseHistory(string auth)
+        public async Task<ICollection<PurchaseHistory>> GetUserPurchaseHistory(string auth, CancellationToken cancellationToken = default)
         {
-            return _context.PurchaseHistories.Where(p => p.Auth == auth).ToList();
+            return await _context.PurchaseHistories.Where(p => p.Auth == auth).ToListAsync(cancellationToken);
         }
     }
 }

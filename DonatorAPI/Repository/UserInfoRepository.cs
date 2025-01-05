@@ -13,31 +13,31 @@ namespace DonatorAPI.Repository
             _context = context;
         }
 
-        public bool CreateUserInfo(UserInfo userInfo)
+        public async Task<bool> CreateUserInfo(UserInfo userInfo, CancellationToken cancellationToken = default)
         {
-            _context.Add(userInfo);
-            return Save();
+            await _context.AddAsync(userInfo);
+            return await Save();
         }
 
-        public UserInfo? GetUserInfoByAuth(string auth)
+        public async Task<UserInfo?> GetUserInfoByAuth(string auth, CancellationToken cancellationToken = default)
         {
             //return _context.Users.Where(p => p.Auth == auth).FirstOrDefault();
-            return _context.Users.Include(auth => auth.PurchaseHistories).Where(p => p.Auth == auth).FirstOrDefault();
+            return await _context.Users.Include(auth => auth.PurchaseHistories).Where(p => p.Auth == auth).FirstOrDefaultAsync(cancellationToken);
         }
 
-        public ICollection<UserInfo> GetUserInfos()
+        public async Task<ICollection<UserInfo>?> GetUserInfos(CancellationToken cancellationToken = default)
         {
-            return _context.Users.Include(auth => auth.PurchaseHistories).OrderBy(p => p.Id).ToList();
+            return await _context.Users.Include(auth => auth.PurchaseHistories).OrderBy(p => p.Id).ToListAsync(cancellationToken);
         }
 
-        public bool IsUserInfoExist(string auth)
+        public async Task<bool> IsUserInfoExist(string auth, CancellationToken cancellationToken = default)
         {
-            return _context.Users.Any(p => p.Auth == auth);
+            return await _context.Users.AnyAsync(p => p.Auth == auth);
         }
 
-        public bool Save()
+        public async Task<bool> Save(CancellationToken cancellationToken = default)
         {
-            var saved = _context.SaveChanges();
+            var saved = await _context.SaveChangesAsync();
             return saved > 0 ? true : false;
         }
     }

@@ -20,9 +20,9 @@ namespace DonatorAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<UserInfo>))]
-        public IActionResult GetUserInfos()
+        public async Task<IActionResult> GetUserInfosAsync()
         {
-            var userInfos = _userInfo.GetUserInfos();
+            var userInfos = await _userInfo.GetUserInfos();
             
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -33,9 +33,9 @@ namespace DonatorAPI.Controllers
         [HttpGet("{steamAuth}")]
         [ProducesResponseType(200, Type = typeof(UserInfo))]
         [ProducesResponseType(400)]
-        public IActionResult GetUserInfoByAuth(string steamAuth)
+        public async Task<IActionResult> GetUserInfoByAuthAsync(string steamAuth)
         {
-            if(!_userInfo.IsUserInfoExist(steamAuth))
+            if(!await _userInfo.IsUserInfoExist(steamAuth))
                 return NotFound();
 
             var userInfo = _userInfo.GetUserInfoByAuth(steamAuth);
@@ -49,7 +49,7 @@ namespace DonatorAPI.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public IActionResult CreateUserInfo([FromBody] UserInfo info)
+        public async Task<IActionResult> CreateUserInfoAsync([FromBody] UserInfo info)
         {
             if (info == null)
                 return BadRequest(ModelState);
@@ -57,11 +57,11 @@ namespace DonatorAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (_userInfo.IsUserInfoExist(info.Auth))
+            if (await _userInfo.IsUserInfoExist(info.Auth))
                 return BadRequest("User already exists");
 
-            _userInfo.CreateUserInfo(info);
-            return CreatedAtAction(nameof(GetUserInfoByAuth), new { steamAuth = info.Auth }, info);
+            await _userInfo.CreateUserInfo(info);
+            return CreatedAtAction(nameof(GetUserInfoByAuthAsync), new { steamAuth = info.Auth }, info);
         }
     }
 }
