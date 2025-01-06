@@ -1,6 +1,6 @@
-using DonatorAPI.Data.Dto;
+using DonatorAPI.Data.Dtos;
 using DonatorAPI.Data.Entities;
-using DonatorAPI.Data.Repository.IRepository;
+using DonatorAPI.Data.Repositories.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DonatorAPI.Controllers;

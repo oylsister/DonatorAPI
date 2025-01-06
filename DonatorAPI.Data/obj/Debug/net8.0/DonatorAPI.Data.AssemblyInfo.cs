@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DonatorAPI.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c730084f1df707d5d9d467d8eb6bbad9f72f45fd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a91a2c588ca53625dac4ba8be32e71bbbbb54bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("DonatorAPI.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DonatorAPI.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

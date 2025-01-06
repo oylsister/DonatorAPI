@@ -1,7 +1,7 @@
 ﻿namespace DonatorAPI.Data;
 
-using DonatorAPI.Data.Repository;
-using DonatorAPI.Data.Repository.IRepository;
+using DonatorAPI.Data.Repositories;
+using DonatorAPI.Data.Repositories.IRepository;
 using Microsoft.Extensions.DependencyInjection;
 
 public static class DataExtensions

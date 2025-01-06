@@ -1,7 +1,7 @@
-﻿using DonatorAPI.Data.Dto;
+﻿using DonatorAPI.Data.Dtos;
 using DonatorAPI.Data.Entities;
 
-namespace DonatorAPI.Data.Repository.IRepository;
+namespace DonatorAPI.Data.Repositories.IRepository;
 
 public interface IUserInfoRepository
 {

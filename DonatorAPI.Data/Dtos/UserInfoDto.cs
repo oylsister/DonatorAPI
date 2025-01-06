@@ -1,4 +1,4 @@
-﻿namespace DonatorAPI.Data.Dto;
+﻿namespace DonatorAPI.Data.Dtos;
 
 public class UserInfoDto
 {

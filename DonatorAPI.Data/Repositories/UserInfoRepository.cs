@@ -1,9 +1,9 @@
-﻿using DonatorAPI.Data.Dto;
+﻿using DonatorAPI.Data.Dtos;
 using DonatorAPI.Data.Entities;
-using DonatorAPI.Data.Repository.IRepository;
+using DonatorAPI.Data.Repositories.IRepository;
 using Microsoft.EntityFrameworkCore;
 
-namespace DonatorAPI.Data.Repository;
+namespace DonatorAPI.Data.Repositories;
 
 public class UserInfoRepository(
     DonatorDataContext donatroDataContext

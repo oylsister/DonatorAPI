@@ -1,6 +1,6 @@
 ﻿using DonatorAPI.Data.Entities;
 
-namespace DonatorAPI.Data.Repository.IRepository;
+namespace DonatorAPI.Data.Repositories.IRepository;
 
 public interface IPurchaseHistoryRepository
 {
