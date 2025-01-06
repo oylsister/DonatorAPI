@@ -1,0 +1,13 @@
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\bin\Debug\net8.0\DonatorAPI.Data.deps.json
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\bin\Debug\net8.0\DonatorAPI.Data.dll
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\bin\Debug\net8.0\DonatorAPI.Data.pdb
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\DonatorAPI.Data.csproj.AssemblyReference.cache
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\DonatorAPI.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\DonatorAPI.Data.AssemblyInfoInputs.cache
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\DonatorAPI.Data.AssemblyInfo.cs
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\DonatorAPI.Data.csproj.CoreCompileInputs.cache
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\DonatorAPI.Data.sourcelink.json
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\DonatorAPI.Data.dll
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\refint\DonatorAPI.Data.dll
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\DonatorAPI.Data.pdb
+C:\Users\tkuru\Desktop\DonatorAPI\DonatorAPI.Data\obj\Debug\net8.0\ref\DonatorAPI.Data.dll
