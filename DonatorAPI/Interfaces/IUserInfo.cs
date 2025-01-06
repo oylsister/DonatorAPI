@@ -10,6 +10,7 @@ namespace DonatorAPI.Interfaces
         Task<bool> IsUserInfoExist(string auth, CancellationToken cancellationToken = default);
         Task<bool> CreateUserInfo(UserInfo userInfo, CancellationToken cancellationToken = default);
         Task<bool> UpdateUserInfo(UserInfoDto userInfo, CancellationToken cancellationToken = default);
+        Task<bool> DeleteUserInfo(UserInfo auth, CancellationToken cancellationToken= default);
         Task<bool> Save(CancellationToken cancellationToken = default);
     }
 }

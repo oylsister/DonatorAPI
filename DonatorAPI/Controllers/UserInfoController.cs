@@ -89,5 +89,30 @@ namespace DonatorAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("{steamAuth}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> DeleteUserInfo(string steamAuth)
+        {
+            if (!await _userInfo.IsUserInfoExist(steamAuth))
+                return NotFound("User is not exists");
+
+            var user = await _userInfo.GetUserInfoByAuth(steamAuth);
+
+            if (user == null)
+                return BadRequest("User is null!");
+
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if(!await _userInfo.DeleteUserInfo(user))
+            {
+                ModelState.AddModelError("", "Something went wrong about deleting User");
+            }
+
+            return NoContent();
+        }
     }
 }

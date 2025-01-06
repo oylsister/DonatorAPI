@@ -39,6 +39,12 @@ namespace DonatorAPI.Repository
             return await Save(cancellationToken);
         }
 
+        public async Task<bool> DeleteUserInfo(UserInfo info, CancellationToken cancellationToken = default)
+        {
+            _context.Remove(info);
+            return await Save(cancellationToken);
+        }
+
         public async Task<UserInfo?> GetUserInfoByAuth(string auth, CancellationToken cancellationToken = default)
         {
             //return _context.Users.Where(p => p.Auth == auth).FirstOrDefault();
