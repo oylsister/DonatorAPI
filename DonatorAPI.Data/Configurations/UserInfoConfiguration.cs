@@ -29,6 +29,7 @@ public class UserInfoConfiguration : IEntityTypeConfiguration<UserInfo>
 
         builder.HasMany(u => u.PurchaseHistories)
             .WithOne(p => p.UserInfo)
-            .HasForeignKey(p => p.Auth);
+            .HasForeignKey(p => p.Auth)
+            .HasPrincipalKey(u => u.Auth);
     }
 }
