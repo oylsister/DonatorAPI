@@ -1,12 +1,13 @@
-﻿namespace DonatorAPI.Data.Repositories.IRepository;
+﻿namespace DonatorAPI.Data.Repositories;
 
 using DonatorAPI.Common.Models;
 using DonatorAPI.Data.Entities;
+using DonatorAPI.Data.Repositories.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 public class UserRepository(
     DonatorDataContext donatorDataContext
-    )
+    ) : IUserRepository
 {
     private readonly DonatorDataContext _donatorDataContext = donatorDataContext;
 

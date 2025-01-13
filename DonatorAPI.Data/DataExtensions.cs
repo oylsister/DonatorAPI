@@ -8,8 +8,7 @@ public static class DataExtensions
 {
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IUserInfoRepository, UserInfoRepository>();
-        services.AddScoped<IPurchaseHistoryRepository, PurchaseHistoryRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
 
         return services;
     }
