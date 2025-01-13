@@ -2,13 +2,13 @@
 
 public class Purchase
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
-    public string Auth { get; set; } = string.Empty;
+    public Guid UserId { get; set; }
+    public User User { get; set; }
 
-    public float Price { get; set; }
+    public Guid ProductId { get; set; }
+    public Product Product { get; set; }
 
-    public DateTime PurchaseDate { get; set; }
-
-    public UserInfo? UserInfo { get; set; }
+    public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 }

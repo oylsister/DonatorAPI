@@ -10,4 +10,12 @@
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Dtos\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\DonatorAPI.Common\DonatorAPI.Common.csproj" />
+    </ItemGroup>
+
 </Project>

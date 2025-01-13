@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonatorAPI", "DonatorAPI\Do
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonatorAPI.Data", "DonatorAPI.Data\DonatorAPI.Data.csproj", "{EDB090B8-640B-441D-AEC4-8BAAB18C7D9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DonatorAPI.Common", "DonatorAPI.Common\DonatorAPI.Common.csproj", "{D2F105C6-0D29-4F45-AA92-E4A21E5594AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EDB090B8-640B-441D-AEC4-8BAAB18C7D9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDB090B8-640B-441D-AEC4-8BAAB18C7D9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDB090B8-640B-441D-AEC4-8BAAB18C7D9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2F105C6-0D29-4F45-AA92-E4A21E5594AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2F105C6-0D29-4F45-AA92-E4A21E5594AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2F105C6-0D29-4F45-AA92-E4A21E5594AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2F105C6-0D29-4F45-AA92-E4A21E5594AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

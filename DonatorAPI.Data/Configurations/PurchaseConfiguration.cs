@@ -8,25 +8,23 @@ public class PurchaseConfiguration : IEntityTypeConfiguration<Purchase>
 {
     public void Configure(EntityTypeBuilder<Purchase> builder)
     {
-        builder.ToTable("purchase_history");
+        builder
+            .HasKey(p => p.Id);
 
-        builder.HasKey(p => p.Id);
-
-        builder.Property(p => p.Id)
-            .HasColumnName("purchase_id");
-
-        builder.Property(p => p.Auth)
-            .HasColumnName("user_auth")
+        builder
+            .Property(p => p.DateCreated)
             .IsRequired();
 
-        builder.Property(p => p.Price)
-            .HasColumnName("price");
+        builder
+            .HasOne(p => p.User)
+            .WithMany(u => u.Purchases)
+            .HasForeignKey(p => p.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Property(p => p.PurchaseDate)
-            .HasColumnName("purchase_time");
-
-        builder.HasOne(p => p.UserInfo)
-            .WithMany(u => u.PurchaseHistories)
-            .HasForeignKey(p => p.Auth);
+        builder
+            .HasOne(p => p.Product)
+            .WithMany(pr => pr.Purchases)
+            .HasForeignKey(p => p.ProductId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
